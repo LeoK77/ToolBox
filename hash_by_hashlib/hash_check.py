@@ -24,10 +24,10 @@ def hash_check(filename, hash_type=HashType.SHA256):
     abspath = os.path.abspath(filename)
     # 二进制形式读取文件并更新Hash对象
     with open(abspath, 'rb') as src:
-        src_date = src.read(2048)
-        while src_date:
-            m.update(src_date)
-            src_date = src.read(2048)
+        src_data = src.read(2048)
+        while src_data:
+            m.update(src_data)
+            src_data = src.read(2048)
     # Hash结果
     hash_sum = m.hexdigest()
     hash_result = 'Src: ' + abspath + '\n' \
