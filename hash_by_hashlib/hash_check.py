@@ -39,3 +39,5 @@ def hash_check(filename, hash_type=HashType.SHA256):
     # 写入到 'result.txt' 文件中
     with open('result.txt', 'a', encoding='UTF-8') as result:
         result.write(hash_result)
+    # 返回hash_sum
+    return hash_sum.upper()
