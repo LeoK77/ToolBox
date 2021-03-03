@@ -27,9 +27,9 @@ def backup_zipfile(src_path='', des_path=''):
     # 获取src路径下的所有文件，zipfile需要有所有文件路径
     all_path = path_analysis.get_all_path(src_path)
 
-    print('FILE ** ' + src_path + ' START')
+    print('FILE ** ' + src_path + ' ** START')
     with zipfile.ZipFile(des_path, 'w', zipfile.ZIP_DEFLATED) as zipfile_example:
         for file_with_path in all_path:
             # 写入时去除根路径，仅保留最顶层文件夹名字
             zipfile_example.write(file_with_path, file_with_path.replace(src_dir, '', 1))
-    print('FILE ** ' + src_path + 'FINISH\n')
+    print('FILE ** ' + src_path + ' ** FINISH\n')
