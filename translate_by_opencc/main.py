@@ -7,4 +7,3 @@ if __name__ == '__main__':
     ]
     for filename in filenames:
         translate.tradition_to_simple(filename)
-    pass

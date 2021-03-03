@@ -1,3 +1,4 @@
 /venv/
 hash_by_hashlib/result.txt
 /urlEscape_by_urllib/result.txt
+/translate_by_opencc/result.txt
