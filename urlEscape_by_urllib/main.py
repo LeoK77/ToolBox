@@ -4,8 +4,7 @@ import os
 
 if __name__ == '__main__':
     root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source/_posts'
-    root_paths = []
-    path_analysis.get_all_path(root_path, root_paths)
+    root_paths = path_analysis.get_all_path(root_path)
     for path in root_paths:
         basename, ext = os.path.splitext(path)
         if ext == '.md':

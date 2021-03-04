@@ -5,7 +5,7 @@ import path_analysis.path_analysis as path_analysis
 
 
 # zipfile文件压缩
-def backup_zipfile(src_path='', des_path=''):
+def backup_total_zip(src_path='', des_path=''):
     # src目录合法
     src_path = os.path.abspath(src_path)
     if not os.path.exists(src_path):
