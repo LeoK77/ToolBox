@@ -15,7 +15,7 @@ def backup_total_zip(src_path='', des_path=''):
     src_dir = os.path.dirname(src_path)
     # 目的地址规范化，默认地址是 D:/DataBackup-ZIP
     if des_path == '':
-        des_path = r'D:/DataBackup-ZIP'
+        des_path = r'U:/DataBackup-ZIP'
     des_path = os.path.abspath(des_path)
     des_path = os.path.join(des_path, src_name)
     if not os.path.exists(des_path):
