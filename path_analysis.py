@@ -1,6 +1,6 @@
 import os
 import datetime
-import hash_by_hashlib.hash_check as hash_check
+import hash_check
 
 
 # 获得root_path目录下的所有文件路径

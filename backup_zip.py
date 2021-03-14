@@ -1,7 +1,7 @@
 import zipfile
 import datetime
 import os
-import path_analysis.path_analysis as path_analysis
+import path_analysis as path_analysis
 
 
 # zipfile文件压缩
@@ -33,3 +33,10 @@ def backup_total_zip(src_path='', des_path=''):
             # 写入时去除根路径，仅保留最顶层文件夹名字
             zipfile_example.write(file_with_path, file_with_path.replace(src_dir, '', 1))
     print('FILE ** ' + src_path + ' ** FINISH\n')
+
+
+if __name__ == '__main__':
+    root_path = r'D:/DataBackup'
+    for path in os.listdir(root_path):
+        path = os.path.join(root_path, path)
+        backup_total_zip(path)

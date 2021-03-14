@@ -1,6 +1,6 @@
 import urllib.parse as parse
 import os
-import path_analysis.path_analysis as path_analysis
+import path_analysis
 
 
 def url_escape_to_chinese(filename=''):
@@ -23,3 +23,12 @@ def url_escape_to_chinese(filename=''):
                     dst_file.write(line)
 
     path_analysis.replace_or_not(abspath_src, abspath_dst)
+
+
+if __name__ == '__main__':
+    root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source/_posts'
+    root_paths = path_analysis.get_all_path(root_path)
+    for path in root_paths:
+        basename, ext = os.path.splitext(path)
+        if ext == '.md':
+            url_escape_to_chinese(path)

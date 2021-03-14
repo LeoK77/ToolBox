@@ -1,6 +1,6 @@
 from opencc import OpenCC  # opencc开源简繁转换
 import os.path
-import path_analysis.path_analysis as path_analysis
+import path_analysis
 
 
 def tradition_to_simple(filename=''):
@@ -21,3 +21,12 @@ def tradition_to_simple(filename=''):
                 dst.write(converter.convert(sentence))
 
     path_analysis.replace_or_not(abspath_src, abspath_dst)
+
+
+if __name__ == '__main__':
+    filenames = [
+        # Hexo主题Butterfly配置文件简体化
+        r'C:\Users\LeoK77\Documents\WorkSpace\Blog-Hexo-LeoK77\node_modules\hexo-theme-butterfly\_config.yml'
+    ]
+    for filename in filenames:
+        tradition_to_simple(filename)
