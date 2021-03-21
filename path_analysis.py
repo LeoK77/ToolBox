@@ -45,6 +45,6 @@ def replace_or_not(abspath_src='', abspath_dst=''):
     if hash_check.hash_check(abspath_src) == hash_check.hash_check(abspath_dst):
         os.remove(abspath_dst)
     else:
-        root, ext = os.path.splitext(abspath_src)
-        os.replace(abspath_src, root + '_old' + ext)
+        # root, ext = os.path.splitext(abspath_src)
+        # os.replace(abspath_src, root + '_old' + ext)
         os.replace(abspath_dst, abspath_src)
