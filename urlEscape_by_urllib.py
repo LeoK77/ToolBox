@@ -17,7 +17,7 @@ def url_escape_to_chinese(filename=''):
     with open(abspath_src, 'r', encoding='utf-8') as src_file:
         with open(abspath_dst, 'w', encoding='utf-8') as dst_file:
             for line in src_file.readlines():
-                if line.find('http'):
+                if line.find('http') != -1:
                     dst_file.write(parse.unquote(line))
                 else:
                     dst_file.write(line)

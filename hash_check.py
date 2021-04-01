@@ -41,3 +41,7 @@ def hash_check(filename, hash_type=HashType.SHA256):
         result.write(hash_result)
     # 返回hash_sum
     return hash_sum.upper()
+
+
+if __name__ == '__main__':
+    hash_check(r'C:\Users\LeoK77\Documents\WorkSpace\Blog-Hexo-LeoK77\source\_posts\LeoK77杂谈\Win10软件推荐.md')
