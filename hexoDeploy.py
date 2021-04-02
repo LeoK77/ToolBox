@@ -19,11 +19,11 @@ def hash_check(filename):
             src_data = src.read(2048)
     # Hash结果
     hash_sum = m.hexdigest()
-    hash_result = 'Src: ' + abspath + '\n' \
-                  + 'HashType: SHA256\n' \
-                  + 'HashSum:\n' \
-                  + '\t--\t' + hash_sum.lower() + '\n' \
-                  + '\t--\t' + hash_sum.upper() + '\n'
+    # hash_result = 'Src: ' + abspath + '\n' \
+    #               + 'HashType: SHA256\n' \
+    #               + 'HashSum:\n' \
+    #               + '\t--\t' + hash_sum.lower() + '\n' \
+    #               + '\t--\t' + hash_sum.upper() + '\n'
     # print(hash_result)
     # 返回hash_sum——全部大写的形式
     return hash_sum.upper()
@@ -129,27 +129,39 @@ if __name__ == '__main__':
                 list_tmp = list(line)
                 list_tmp.pop()  # 删除换行符
                 hashRecord.append(''.join(list_tmp).split('------'))
+    # 如果hashRecord为空，则对hashRecord进行初始化
+    if len(hashRecord) == 0:
+        for path in root_paths:
+            if path.find('.md') == -1:
+                break
+            hashCheck = hash_check(path)
+            record = [path, hashCheck]
+            hashRecord.append(record)
     # url转义，将%XX形式转义回中文
     for path in root_paths:
         basename, ext = os.path.splitext(path)
         if ext == '.md':
             url_escape_to_chinese(path)
-        # 进行hash比较，如果hash结果不匹配，则更改时间并重新hash
-        with open('hashConfig.txt', 'w', encoding='utf-8') as hashConfig:
-            for path in root_paths:
-                # 标志位，如果没有找到这个文件的hashRecord，说明这是一个新文件，需要单独添加到hashRecord里
-                flag = False
+    # 进行hash比较，如果hash结果不匹配，则更改时间并重新hash
+    with open('hashConfig.txt', 'w', encoding='utf-8') as hashConfig:
+        for path in root_paths:
+            if path.find('.md') == -1:
+                break
+            # 标志位，如果没有找到这个文件的hashRecord，说明这是一个新文件，需要单独添加到hashRecord里
+            flag = False
+            hashCheck = hash_check(path)
+            for i in range(len(hashRecord)):
+                if hashRecord[i][0] == path:
+                    flag = True
+                    if hashRecord[i][1] != hashCheck:
+                        # 哈希值发生了更改，则更新时间并更新哈希值
+                        time_update(path)
+                        hashRecord[i][1] = hash_check(path)
+            if not flag:
+                # 增加新文件记录
+                time_update(path)
                 hashCheck = hash_check(path)
-                for i in range(len(hashRecord)):
-                    if hashRecord[i][0] == path:
-                        flag = True
-                        if hashRecord[i][1] != hashCheck:
-                            # 哈希值发生了更改，则更新时间并更新哈希值
-                            time_update(path)
-                            hashRecord[i][1] = hash_check(path)
-                if not flag:
-                    # 增加新文件记录
-                    record = [path, hashCheck]
-                    hashRecord.append(record)
-            for record in hashRecord:
-                hashConfig.write(record[0] + '------' + record[1] + '\n')
+                record = [path, hashCheck]
+                hashRecord.append(record)
+        for record in hashRecord:
+            hashConfig.write(record[0] + '------' + record[1] + '\n')
