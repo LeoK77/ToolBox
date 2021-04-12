@@ -2,7 +2,7 @@ import path_analysis
 import os
 
 if __name__ == '__main__':
-    dirname = r'C:\Users\LeoK77\Downloads\Video\硕鼠-bilibili\王道考研-计算机网络'
+    dirname = r'C:\Users\LeoK77\Downloads\Video\硕鼠-bilibili\韩顺平-Linux'
     pathList = path_analysis.get_all_path(dirname)
     for i in range(len(pathList)):
         basename = os.path.basename(pathList[i])
@@ -25,3 +25,6 @@ if __name__ == '__main__':
         print(basename)
         path = os.path.join(dirname, basename)
         os.replace(pathList[i], path)
+    # for i in range(len(pathList)):
+    #     path = pathList[i].replace("韩顺平 一周学会Linux", "韩顺平图解Linux")
+    #     os.replace(pathList[i], path)

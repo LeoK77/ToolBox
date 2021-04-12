@@ -118,7 +118,7 @@ def time_update(filename):
 
 
 if __name__ == '__main__':
-    root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source/_posts'
+    root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source'
     root_paths = get_all_path(root_path)
     # 读取原本存储的hash信息
     hashRecord = []
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     if len(hashRecord) == 0:
         for path in root_paths:
             if path.find('.md') == -1:
-                break
+                continue
             hashCheck = hash_check(path)
             record = [path, hashCheck]
             hashRecord.append(record)
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     with open('hashConfig.txt', 'w', encoding='utf-8') as hashConfig:
         for path in root_paths:
             if path.find('.md') == -1:
-                break
+                continue
             # 标志位，如果没有找到这个文件的hashRecord，说明这是一个新文件，需要单独添加到hashRecord里
             flag = False
             hashCheck = hash_check(path)

@@ -26,7 +26,7 @@ def url_escape_to_chinese(filename=''):
 
 
 if __name__ == '__main__':
-    root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source/_posts'
+    root_path = r'C:/Users/LeoK77/Documents/WorkSpace/Blog-Hexo-LeoK77/source'
     root_paths = path_analysis.get_all_path(root_path)
     for path in root_paths:
         basename, ext = os.path.splitext(path)
