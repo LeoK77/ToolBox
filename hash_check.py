@@ -20,28 +20,17 @@ def hash_check(filename, hash_type=HashType.SHA256):
     else:
         print("ERROR! Type ** " + str(hash_type) + " ** NOT SUPPORT")
         return
-    # 转换绝对路径
     abspath = os.path.abspath(filename)
-    # 二进制形式读取文件并更新Hash对象
     with open(abspath, 'rb') as src:
-        src_data = src.read(2048)
-        while src_data:
-            m.update(src_data)
+        while True:
             src_data = src.read(2048)
-    # Hash结果
+            if not src_data:
+                break
+            m.update(src_data)
     hash_sum = m.hexdigest()
-    hash_result = 'Src: ' + abspath + '\n' \
-                  + 'HashType: ' + str(hash_type) + '\n' \
-                  + 'HashSum:\n' \
-                  + '\t--\t' + hash_sum.lower() + '\n' \
-                  + '\t--\t' + hash_sum.upper() + '\n'
-    print(hash_result)
-    # 写入到 'result.txt' 文件中
-    with open('result.txt', 'a', encoding='UTF-8') as result:
-        result.write(hash_result)
-    # 返回hash_sum
+    # hash_result = 'Src: ' + abspath + '\n' \
+    #               + 'HashType: ' + str(hash_type) + '\n' \
+    #               + 'HashSum:\n' \
+    #               + '\t--\t' + hash_sum.lower() + '\n' \
+    #               + '\t--\t' + hash_sum.upper() + '\n'
     return hash_sum.upper()
-
-
-if __name__ == '__main__':
-    hash_check(r'C:\Users\LeoK77\Documents\WorkSpace\Blog-Hexo-LeoK77\source\_posts\LeoK77杂谈\Win10软件推荐.md')
